@@ -5,16 +5,6 @@ module.exports = function (config) {
     config.set({
         basePath: '.',
         frameworks: ['jasmine'],
-        plugins: [
-            require('karma-jasmine'),
-            require('karma-chrome-launcher'),
-            require('karma-jasmine-html-reporter'),
-            require('karma-coverage-istanbul-reporter'),
-            require('@angular/cli/plugins/karma')
-        ],
-        client: {
-            clearContext: false // leave Jasmine Spec Runner output visible in browser
-        },
         files: [
             '../../wwwroot/dist/vendor.js',
             './boot-tests.ts'
@@ -22,16 +12,7 @@ module.exports = function (config) {
         preprocessors: {
             './boot-tests.ts': ['webpack']
         },
-        coverageIstanbulReporter: {
-            reports: ['html', 'lcovonly'],
-            fixWebpackSourcePaths: true
-        },
-        angularCli: {
-            environment: 'dev'
-        },
-        reporters: config.angularCli && config.angularCli.codeCoverage
-            ? ['progress', 'coverage-istanbul']
-            : ['progress', 'kjhtml'],
+        reporters: ['progress'],
         port: 9876,
         colors: true,
         logLevel: config.LOG_INFO,
